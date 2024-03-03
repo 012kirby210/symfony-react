@@ -17,5 +17,7 @@
     "watch": "encore dev --watch",
     "build": "encore production"
   },
-  "dependencies": {}
+  "dependencies": {
+    "eslint": "^8.57.0"
+  }
 }
