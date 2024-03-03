@@ -50,7 +50,10 @@
             "*": "dist"
         },
         "sort-packages": true,
-        "platform": {}
+        "platform": {},
+        "allow-plugins": {
+            "symfony/flex": true
+        }
     },
     "replace": {
         "symfony/polyfill-iconv": "*",
