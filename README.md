@@ -45,6 +45,10 @@ database (`doctrine:database:drop --force`) and try again.
 To build your assets, install the dependencies with yarn and then
 run encore:
 
+It requires node16.
+https://nodejs.org/download/release/v16.20.2/
+
+
 ```
 yarn install
 yarn run encore dev --watch
