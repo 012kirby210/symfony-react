@@ -18,7 +18,9 @@
     "build": "encore production"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.23.3",
     "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.33.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
