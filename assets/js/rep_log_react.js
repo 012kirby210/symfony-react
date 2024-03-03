@@ -4,4 +4,10 @@ import {RepLogApp} from "./RepLog/RepLogApp";
 
 const root = createRoot(document.getElementById('lift-stuff-app'));
 
-root.render(<RepLogApp />);
+const shouldShowParameter = true;
+
+root.render(
+    <>
+        <RepLogApp shouldShowParameter={true}/>
+    </>
+);
