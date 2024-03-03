@@ -1,6 +1,7 @@
-import React from 'react';
-import ReactDom from 'react-dom';
+import React, { Component } from 'react';
+import { createRoot } from 'react-dom/client';
+import {RepLogApp} from "./RepLog/RepLogApp";
 
-const el = <h2>Lift history</h2>
+const root = createRoot(document.getElementById('lift-stuff-app'));
 
-ReactDom.render(el,document.getElementById('lift-stuff-app'));
+root.render(<RepLogApp />);
