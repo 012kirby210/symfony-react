@@ -3,7 +3,16 @@ import React, { Component } from 'react';
 
 export class RepLogApp extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state =  {
+            highlightedRowId: null,
+        }
+    }
     render() {
+
+        const { highlightedRowId } = this.state;
 
         const repLogs = [
             { "id": 7, "reps": 16,"itemLabel": "My Laptop", "totalWeightLifted": 72 },
@@ -29,7 +38,9 @@ export class RepLogApp extends Component {
                     <tbody>
                     { repLogs.map( (repLog,index) =>
                         (
-                            <tr key={repLog.id}>
+                            <tr key={repLog.id}
+                            className={highlightedRowId === repLog.id ? 'info' : ''}
+                            >
                                 <td>{repLog.itemLabel}</td>
                                 <td>{repLog.reps}</td>
                                 <td>{repLog.totalWeightLifted}</td>
