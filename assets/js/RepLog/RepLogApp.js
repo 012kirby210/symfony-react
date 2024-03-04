@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RepLogList from "./RepLogList";
 
 
 export class RepLogApp extends Component {
@@ -18,12 +19,6 @@ export class RepLogApp extends Component {
 
         const { highlightedRowId } = this.state;
 
-        const repLogs = [
-            { "id": 7, "reps": 16,"itemLabel": "My Laptop", "totalWeightLifted": 72 },
-            { "id": 8, "reps": 6, "itemLabel": "My Laptop", "totalWeightLifted": 27 },
-            { "id": 22, "reps": 5, "itemLabel": "Cat", "totalWeightLifted": 45 }
-        ];
-
         return (
             <div className="col-md-7">
                 <h2>
@@ -39,22 +34,7 @@ export class RepLogApp extends Component {
                         <th>&nbsp;</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    { repLogs.map( (repLog,index) =>
-                        (
-                            <tr key={repLog.id}
-                            className={highlightedRowId === repLog.id ? 'info' : ''}
-                                onClick={ (event) => this.handleRowClick(repLog.id, event)}
-                            >
-                                <td>{repLog.itemLabel}</td>
-                                <td>{repLog.reps}</td>
-                                <td>{repLog.totalWeightLifted}</td>
-                                <td>...</td>
-                            </tr>
-
-                        )
-                    )}
-                    </tbody>
+                    <RepLogList highlightedRowId={highlightedRowId}/>
                     <tfoot>
                     <tr>
                         <td>&nbsp;</td>
@@ -95,7 +75,6 @@ export class RepLogApp extends Component {
 
                     <button type="submit" className="btn btn-primary">I Lifted it!</button>
                 </form>
-
             </div>
         );
     }
