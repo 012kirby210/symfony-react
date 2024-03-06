@@ -1,5 +1,6 @@
 import React from 'react';
 import RepLogList from "./RepLogList";
+import PropTypes from "prop-types";
 
 export default function RepLog({highlightedRowId,handleRowClick}) {
     return (
@@ -60,4 +61,9 @@ export default function RepLog({highlightedRowId,handleRowClick}) {
             </form>
         </div>
     );
+}
+
+RepLog.propTypes = {
+    highlightedRowId: PropTypes.any,
+    handleRowClick: PropTypes.func.required
 }
