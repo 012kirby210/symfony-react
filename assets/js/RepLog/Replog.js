@@ -6,7 +6,14 @@ function calculateTotalWeightLifted(repLogs){
     return repLogs.reduce( (accu,repLog) => repLog.totalWeightLifted + accu, 0);
 }
 
-export default function RepLog({highlightedRowId,handleRowClick, repLogs}) {
+export default function RepLog({highlightedRowId,handleRowClick, repLogs, onNewItemSubmit}) {
+
+    function handleFormSubmit(event){
+        event.preventDefault();
+        const name = event.target.elements.namedItem('item').value;
+        const reps = event.target.elements.namedItem('reps').value;
+        onNewItemSubmit(name, reps);
+    }
 
     return (
         <div className="col-md-7">
@@ -34,7 +41,7 @@ export default function RepLog({highlightedRowId,handleRowClick, repLogs}) {
                 </tfoot>
             </table>
 
-            <form className="form-inline">
+            <form className="form-inline" onSubmit={handleFormSubmit}>
                 <div className="form-group">
                     <label className="sr-only control-label required" htmlFor="rep_log_item">
                         What did you lift?
@@ -62,7 +69,7 @@ export default function RepLog({highlightedRowId,handleRowClick, repLogs}) {
                            className="form-control"/>
                 </div>
 
-                <button type="submit" className="btn btn-primary">I Lifted it!</button>
+                <button type="submit" className="btn btn-primary" >I Lifted it!</button>
             </form>
         </div>
     );
@@ -71,5 +78,6 @@ export default function RepLog({highlightedRowId,handleRowClick, repLogs}) {
 RepLog.propTypes = {
     highlightedRowId: PropTypes.any,
     handleRowClick: PropTypes.func.isRequired,
+    onNewItemSubmit: PropTypes.func.isRequired,
     repLogs: PropTypes.array.isRequired
 }
