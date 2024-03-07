@@ -22,8 +22,12 @@ export class RepLogApp extends Component {
     handleRowClick(repLogId){
         this.setState({ highlightedRowId: repLogId});
     }
+
+    handleNewItemSubmit(itemName, reps) {
+        console.log(`${itemName}, ${reps}`);
+    }
     render() {
-        return (<RepLog {...this.state} handleRowClick={this.handleRowClick} />);
+        return (<RepLog {...this.state} handleRowClick={this.handleRowClick} onNewItemSubmit={this.handleNewItemSubmit}/>);
     }
 }
 
