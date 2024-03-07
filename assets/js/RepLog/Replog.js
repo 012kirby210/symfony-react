@@ -2,7 +2,12 @@ import React from 'react';
 import RepLogList from "./RepLogList";
 import PropTypes from "prop-types";
 
+function calculateTotalWeightLifted(repLogs){
+    return repLogs.reduce( (accu,repLog) => repLog.totalWeightLifted + accu, 0);
+}
+
 export default function RepLog({highlightedRowId,handleRowClick, repLogs}) {
+
     return (
         <div className="col-md-7">
             <h2>
@@ -23,7 +28,7 @@ export default function RepLog({highlightedRowId,handleRowClick, repLogs}) {
                 <tr>
                     <td>&nbsp;</td>
                     <th>Total</th>
-                    <th>TODO</th>
+                    <th>{calculateTotalWeightLifted(repLogs)}</th>
                     <td>&nbsp;</td>
                 </tr>
                 </tfoot>
