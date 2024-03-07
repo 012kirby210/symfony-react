@@ -1,14 +1,8 @@
 import React from 'react'
 import PropTypes from "prop-types";
 
-export default function RepLogList({ highlightedRowId, onRowClick }) {
+export default function RepLogList({ highlightedRowId, onRowClick, repLogs}) {
 
-
-    const repLogs = [
-        {"id": 7, "reps": 16, "itemLabel": "My Laptop", "totalWeightLifted": 72},
-        {"id": 8, "reps": 6, "itemLabel": "My Laptop", "totalWeightLifted": 27},
-        {"id": 22, "reps": 5, "itemLabel": "Cat", "totalWeightLifted": 45}
-    ];
 
     return (
         <tbody>
@@ -32,5 +26,6 @@ export default function RepLogList({ highlightedRowId, onRowClick }) {
 
 RepLogList.propTypes = {
     highlightedRowId: PropTypes.any,
-    onRowClick: PropTypes.func.isRequired
+    onRowClick: PropTypes.func.isRequired,
+    repLogs: PropTypes.array.isRequired
 };

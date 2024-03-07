@@ -2,7 +2,7 @@ import React from 'react';
 import RepLogList from "./RepLogList";
 import PropTypes from "prop-types";
 
-export default function RepLog({highlightedRowId,handleRowClick}) {
+export default function RepLog({highlightedRowId,handleRowClick, repLogs}) {
     return (
         <div className="col-md-7">
             <h2>
@@ -18,7 +18,7 @@ export default function RepLog({highlightedRowId,handleRowClick}) {
                     <th>&nbsp;</th>
                 </tr>
                 </thead>
-                <RepLogList highlightedRowId={highlightedRowId} onRowClick={handleRowClick}/>
+                <RepLogList highlightedRowId={highlightedRowId} onRowClick={handleRowClick} repLogs={repLogs}/>
                 <tfoot>
                 <tr>
                     <td>&nbsp;</td>
@@ -65,5 +65,6 @@ export default function RepLog({highlightedRowId,handleRowClick}) {
 
 RepLog.propTypes = {
     highlightedRowId: PropTypes.any,
-    handleRowClick: PropTypes.func.required
+    handleRowClick: PropTypes.func.isRequired,
+    repLogs: PropTypes.array.isRequired
 }
