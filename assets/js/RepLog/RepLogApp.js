@@ -23,10 +23,7 @@ export class RepLogApp extends Component {
         this.setState({ highlightedRowId: repLogId});
     }
     render() {
-
-        const { highlightedRowId, repLogs } = this.state;
-
-        return (<RepLog highlightedRowId={highlightedRowId} handleRowClick={this.handleRowClick} repLogs={repLogs}/>);
+        return (<RepLog {...this.state} handleRowClick={this.handleRowClick} />);
     }
 }
 
