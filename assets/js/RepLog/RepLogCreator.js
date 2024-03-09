@@ -28,6 +28,14 @@ export default class RepLogCreator extends Component {
         const { onAddRepLog } = this.props;
         const itemSelect = this.itemSelect.current;
         const quantityInput = this.quantityInput.current;
+
+        if (quantityInput.value<=0){
+            // ! TODO
+
+            // no submit
+            return ;
+        }
+
         onAddRepLog(itemSelect.options[itemSelect.selectedIndex].value, quantityInput.value);
 
         // reset index and value
