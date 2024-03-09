@@ -34,8 +34,11 @@ export default function RepLog({highlightedRowId,handleRowClick, repLogs, onAddR
                 </tr>
                 </tfoot>
             </table>
-            <RepLogCreator onAddRepLog={onAddRepLog}/>
-
+            <div className={`row`}>
+                <div className={`col-md-6`}>
+                    <RepLogCreator onAddRepLog={onAddRepLog}/>
+                </div>
+            </div>
         </div>
     );
 }
