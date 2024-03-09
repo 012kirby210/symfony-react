@@ -20,7 +20,7 @@ export default function RepLog({
             <h2>
                 Lift History {`${'🚀'.repeat(numberOfChar)}`}
             </h2>
-            <input type={`number`} value={numberOfChar} onChange={ (event) => onNumberOfCharChange(event.target.value)}/>
+            <input type={`range`} value={numberOfChar} onChange={ (event) => onNumberOfCharChange(+event.target.value)}/>
             <table className="table table-striped">
                 <thead>
                 <tr>
