@@ -14,13 +14,18 @@ export class RepLogApp extends Component {
                 {"id": uuid(), "reps": 16, "itemLabel": "My Laptop", "totalWeightLifted": 72},
                 {"id": uuid(), "reps": 6, "itemLabel": "My Laptop", "totalWeightLifted": 27},
                 {"id": uuid(), "reps": 5, "itemLabel": "Cat", "totalWeightLifted": 45}
-            ]
+            ],
+            numberOfChar: 1,
         }
 
         this.handleRowClick = this.handleRowClick.bind(this);
         this.handleAddReplog = this.handleAddReplog.bind(this);
+        this.handleNumberOfChar = this.handleNumberOfChar.bind(this);
     }
 
+    handleNumberOfChar(n){
+        this.setState({numberOfChar: n});
+    }
     handleRowClick(repLogId){
         this.setState({ highlightedRowId: repLogId});
     }
@@ -35,7 +40,11 @@ export class RepLogApp extends Component {
         })
     }
     render() {
-        return (<RepLog {...this.state} handleRowClick={this.handleRowClick} onAddRepLog={this.handleAddReplog}/>);
+        return (<RepLog {...this.state}
+                        handleRowClick={this.handleRowClick}
+                        onAddRepLog={this.handleAddReplog}
+                        onNumberOfCharChange={this.handleNumberOfChar}
+        />);
     }
 }
 
