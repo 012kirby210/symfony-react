@@ -9,6 +9,13 @@ export default class RepLogCreator extends Component {
         super(props);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
+        this.itemOptions = [
+            { id:"cat", value:"Cat" },
+            { id:"fat_cat", value:"Big Fat Cat" },
+                { id:"laptop", value:"My Laptop" },
+                { id:"coffee_cup", value:"Coffee Cup" },
+    ];
+
         // pour utilser le framework ref, il est nécessaire d'avoir une class
         this.quantityInput = React.createRef();
         this.itemSelect = React.createRef();
@@ -18,10 +25,10 @@ export default class RepLogCreator extends Component {
 
         event.preventDefault();
 
-        const { onNewItemSubmit } = this.props;
+        const { onAddRepLog } = this.props;
         const itemSelect = this.itemSelect.current;
         const quantityInput = this.quantityInput.current;
-        onNewItemSubmit(itemSelect.options[itemSelect.selectedIndex].value, quantityInput.value);
+        onAddRepLog(itemSelect.options[itemSelect.selectedIndex].value, quantityInput.value);
 
         // reset index and value
         quantityInput.value= '';
@@ -42,10 +49,9 @@ export default class RepLogCreator extends Component {
                             className="form-control"
                     >
                         <option value="">What did you lift?</option>
-                        <option value="cat">Cat</option>
-                        <option value="fat_cat">Big Fat Cat</option>
-                        <option value="laptop">My Laptop</option>
-                        <option value="coffee_cup">Coffee Cup</option>
+                        { this.itemOptions.map( (item) =>
+                            (<option key={item.id} value={item.id}>{item.value}</option>))
+                        }
                     </select>
                 </div>
 
@@ -67,5 +73,5 @@ export default class RepLogCreator extends Component {
 }
 
 RepLogCreator.propTypes = {
-    onNewItemSubmit: PropTypes.func.isRequired
+    onAddRepLog: PropTypes.func.isRequired
 }

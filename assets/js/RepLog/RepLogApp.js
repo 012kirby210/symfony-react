@@ -18,24 +18,24 @@ export class RepLogApp extends Component {
         }
 
         this.handleRowClick = this.handleRowClick.bind(this);
-        this.handleNewItemSubmit = this.handleNewItemSubmit.bind(this);
+        this.handleAddReplog = this.handleAddReplog.bind(this);
     }
 
     handleRowClick(repLogId){
         this.setState({ highlightedRowId: repLogId});
     }
 
-    handleNewItemSubmit(itemName, reps) {
-        this.setState( {
-            ...this.state,
-            repLogs: [
-                ...this.state.repLogs,
-                {"id": uuid(), "reps": reps,  "itemLabel": itemName, "totalWeightLifted": Math.floor(Math.random()*50)}
-            ]
-        });
+    handleAddReplog(itemName, reps) {
+
+        const newRep = {"id": uuid(), "reps": reps,  "itemLabel": itemName, "totalWeightLifted": Math.floor(Math.random()*50)};
+
+        this.setState ( oldState => {
+            const newReplogs = [...oldState.repLogs, newRep];
+            return { repLogs: newReplogs };
+        })
     }
     render() {
-        return (<RepLog {...this.state} handleRowClick={this.handleRowClick} onNewItemSubmit={this.handleNewItemSubmit}/>);
+        return (<RepLog {...this.state} handleRowClick={this.handleRowClick} onAddRepLog={this.handleAddReplog}/>);
     }
 }
 

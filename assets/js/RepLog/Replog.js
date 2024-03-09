@@ -7,7 +7,7 @@ function calculateTotalWeightLifted(repLogs){
     return repLogs.reduce( (accu,repLog) => repLog.totalWeightLifted + accu, 0);
 }
 
-export default function RepLog({highlightedRowId,handleRowClick, repLogs, onNewItemSubmit}) {
+export default function RepLog({highlightedRowId,handleRowClick, repLogs, onAddRepLog}) {
 
     return (
         <div className="col-md-7">
@@ -34,7 +34,7 @@ export default function RepLog({highlightedRowId,handleRowClick, repLogs, onNewI
                 </tr>
                 </tfoot>
             </table>
-            <RepLogCreator onNewItemSubmit={onNewItemSubmit}/>
+            <RepLogCreator onAddRepLog={onAddRepLog}/>
 
         </div>
     );
@@ -43,6 +43,6 @@ export default function RepLog({highlightedRowId,handleRowClick, repLogs, onNewI
 RepLog.propTypes = {
     highlightedRowId: PropTypes.any,
     handleRowClick: PropTypes.func.isRequired,
-    onNewItemSubmit: PropTypes.func.isRequired,
+    onAddRepLog: PropTypes.func.isRequired,
     repLogs: PropTypes.array.isRequired
 }
