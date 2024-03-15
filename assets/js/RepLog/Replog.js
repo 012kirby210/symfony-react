@@ -15,7 +15,8 @@ export default function RepLog({
                                    onAddRepLog,
                                    numberOfChar,
                                    onNumberOfCharChange,
-                                   onDeleteReplog}) {
+                                   onDeleteReplog,
+                                   isLoaded}) {
 
     return (
         <div className="col-md-7">
@@ -36,6 +37,7 @@ export default function RepLog({
                             onRowClick={handleRowClick}
                             repLogs={repLogs}
                             onDeleteReplog={onDeleteReplog}
+                            isLoaded={isLoaded}
                 />
                 <tfoot>
                 <tr>
@@ -63,4 +65,5 @@ RepLog.propTypes = {
     numberOfChar: PropTypes.number.isRequired,
     onNumberOfCharChange: PropTypes.func.isRequired,
     onDeleteReplog: PropTypes.func.isRequired,
+    isLoaded: PropTypes.bool.isRequired,
 }
