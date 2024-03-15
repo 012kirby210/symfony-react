@@ -9,17 +9,9 @@ export class RepLogApp extends Component {
     constructor(props) {
         super(props);
 
-        getRepLogs().then( (data) => {
-            console.log(data);
-        })
-
         this.state =  {
             highlightedRowId: null,
-            repLogs:  [
-                {"id": uuid(), "reps": 16, "itemLabel": "My Laptop", "totalWeightLifted": 72},
-                {"id": uuid(), "reps": 6, "itemLabel": "My Laptop", "totalWeightLifted": 27},
-                {"id": uuid(), "reps": 5, "itemLabel": "Cat", "totalWeightLifted": 45}
-            ],
+            repLogs:  [],
             numberOfChar: 1,
         }
 
@@ -27,6 +19,13 @@ export class RepLogApp extends Component {
         this.handleAddReplog = this.handleAddReplog.bind(this);
         this.handleNumberOfChar = this.handleNumberOfChar.bind(this);
         this.handleRemoveReplog = this.handleRemoveReplog.bind(this);
+    }
+
+    componentDidMount(){
+        getRepLogs()
+            .then( (data) => {
+                this.setState({ repLogs: data});
+            });
     }
 
     handleNumberOfChar(n){
