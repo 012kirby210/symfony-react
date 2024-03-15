@@ -13,6 +13,7 @@ export class RepLogApp extends Component {
             highlightedRowId: null,
             repLogs:  [],
             numberOfChar: 1,
+            isLoaded: false,
         }
 
         this.handleRowClick = this.handleRowClick.bind(this);
@@ -24,7 +25,7 @@ export class RepLogApp extends Component {
     componentDidMount(){
         getRepLogs()
             .then( (data) => {
-                this.setState({ repLogs: data});
+                this.setState({ repLogs: data, isLoaded: true});
             });
     }
 
