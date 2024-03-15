@@ -14,7 +14,8 @@ export default function RepLog({
                                    repLogs,
                                    onAddRepLog,
                                    numberOfChar,
-                                   onNumberOfCharChange}) {
+                                   onNumberOfCharChange,
+                                   onDeleteReplog}) {
 
     return (
         <div className="col-md-7">
@@ -31,7 +32,11 @@ export default function RepLog({
                     <th>&nbsp;</th>
                 </tr>
                 </thead>
-                <RepLogList highlightedRowId={highlightedRowId} onRowClick={handleRowClick} repLogs={repLogs} />
+                <RepLogList highlightedRowId={highlightedRowId}
+                            onRowClick={handleRowClick}
+                            repLogs={repLogs}
+                            onDeleteReplog={onDeleteReplog}
+                />
                 <tfoot>
                 <tr>
                     <td>&nbsp;</td>
@@ -57,4 +62,5 @@ RepLog.propTypes = {
     repLogs: PropTypes.array.isRequired,
     numberOfChar: PropTypes.number.isRequired,
     onNumberOfCharChange: PropTypes.func.isRequired,
+    onDeleteReplog: PropTypes.func.isRequired,
 }
