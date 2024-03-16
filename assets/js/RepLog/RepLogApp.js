@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RepLog from "./Replog";
 import { v4 as uuid } from 'uuid';
-import { getRepLogs, deleteRepLog } from "../api/rep_log_api";
+import { getRepLogs, deleteRepLog,createRepLog } from "../api/rep_log_api";
 
 
 export class RepLogApp extends Component {
@@ -36,14 +36,20 @@ export class RepLogApp extends Component {
         this.setState({ highlightedRowId: repLogId});
     }
 
-    handleAddReplog(itemName, reps) {
+    handleAddReplog(itemValue, reps) {
 
-        const newRep = {"id": uuid(), "reps": reps,  "itemLabel": itemName, "totalWeightLifted": Math.floor(Math.random()*50)};
+        const newRep = {
+            reps: reps,
+            item: itemValue,
+        };
 
-        this.setState ( oldState => {
-            const newReplogs = [...oldState.repLogs, newRep];
-            return { repLogs: newReplogs };
-        })
+        createRepLog(newRep).then(repLog => {
+
+            this.setState(prevState => {
+                const newReplogs = [...prevState.repLogs, repLog];
+                return {repLogs: newReplogs};
+            })
+        });
     }
 
     handleRemoveReplog(id) {

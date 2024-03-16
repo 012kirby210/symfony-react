@@ -41,9 +41,10 @@ export default class RepLogCreator extends Component {
             return ;
         }
 
-        const itemLabel = this.itemOptions.find( (option) => option.id === selectedItemId).value;
+        // const itemLabel = this.itemOptions.find( (option) => option.id === selectedItemId).value;
+        const itemValue = selectedItemId;
 
-        onAddRepLog(itemLabel, quantityValue);
+        onAddRepLog(itemValue, quantityValue);
 
         // reset index and value
         this.setState( {
