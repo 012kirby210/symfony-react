@@ -24,7 +24,7 @@ export default function RepLog({
                                }) {
 
     return (
-        <div className="col-md-7">
+        <div>
             <h2>
                 Lift History {`${'🚀'.repeat(numberOfChar)}`}
             </h2>
