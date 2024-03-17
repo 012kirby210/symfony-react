@@ -16,7 +16,10 @@ export default function RepLog({
                                    numberOfChar,
                                    onNumberOfCharChange,
                                    onDeleteReplog,
-                                   isLoaded}) {
+                                   isLoaded,
+                                   isSavingNewReplog,
+                                   successMessage
+                               }) {
 
     return (
         <div className="col-md-7">
@@ -24,6 +27,11 @@ export default function RepLog({
                 Lift History {`${'🚀'.repeat(numberOfChar)}`}
             </h2>
             <input type={`range`} value={numberOfChar} onChange={ (event) => onNumberOfCharChange(+event.target.value)}/>
+            {successMessage && (
+                <div className={`alert alert-success text-center`}>
+                    {successMessage}
+                </div>
+            )}
             <table className="table table-striped">
                 <thead>
                 <tr>
@@ -38,6 +46,7 @@ export default function RepLog({
                             repLogs={repLogs}
                             onDeleteReplog={onDeleteReplog}
                             isLoaded={isLoaded}
+                            isSavingNewReplog={isSavingNewReplog}
                 />
                 <tfoot>
                 <tr>
@@ -66,4 +75,6 @@ RepLog.propTypes = {
     onNumberOfCharChange: PropTypes.func.isRequired,
     onDeleteReplog: PropTypes.func.isRequired,
     isLoaded: PropTypes.bool.isRequired,
+    isSavingNewReplog: PropTypes.bool.isRequired,
+    successMessage: PropTypes.string.isRequired,
 }
