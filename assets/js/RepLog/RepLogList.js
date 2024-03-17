@@ -31,6 +31,10 @@ export default function RepLogList({ highlightedRowId,
                 <tr key={repLog.id}
                     className={highlightedRowId === repLog.id ? 'info' : ''}
                     onClick={() => onRowClick(repLog.id)}
+
+                    style={{
+                        opacity: repLog.isDeleting ? 0.3 : 1
+                    }}
                 >
                     <td>{repLog.itemLabel}</td>
                     <td>{repLog.reps}</td>
