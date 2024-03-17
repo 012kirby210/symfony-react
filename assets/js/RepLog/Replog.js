@@ -19,7 +19,8 @@ export default function RepLog({
                                    isLoaded,
                                    isSavingNewReplog,
                                    successMessage,
-                                   newRepLogValidationErrorMessage
+                                   newRepLogValidationErrorMessage,
+                                   itemOptions
                                }) {
 
     return (
@@ -60,7 +61,9 @@ export default function RepLog({
             </table>
             <div className={`row`}>
                 <div className={`col-md-6`}>
-                    <RepLogCreator onAddRepLog={onAddRepLog} validationErrorMessage={newRepLogValidationErrorMessage}/>
+                    <RepLogCreator onAddRepLog={onAddRepLog}
+                                   validationErrorMessage={newRepLogValidationErrorMessage}
+                                   itemOptions={itemOptions}/>
                 </div>
             </div>
         </div>
@@ -79,4 +82,5 @@ RepLog.propTypes = {
     isSavingNewReplog: PropTypes.bool.isRequired,
     successMessage: PropTypes.string.isRequired,
     newRepLogValidationErrorMessage: PropTypes.string.isRequired,
+    itemOptions: PropTypes.array.isRequired,
 }
