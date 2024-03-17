@@ -2,7 +2,9 @@ function fetchJson(url,options){
     return fetch(url,
         Object.assign({credentials: 'same-origin'}, options)
     ).then( response => {
-        return response.json();
+        if ( 204 !== response.status ) {
+            return response.json();
+        }
     })
 }
 export function getRepLogs() {
