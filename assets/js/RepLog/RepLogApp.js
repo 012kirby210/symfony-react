@@ -15,6 +15,7 @@ export class RepLogApp extends Component {
             isLoaded: false,
             isSavingNewReplog: false,
             successMessage: '',
+            newRepLogValidationErrorMessage: '',
         }
 
         this.successMessageTimeoutHandle = 0;
@@ -61,11 +62,20 @@ export class RepLogApp extends Component {
                 return {
                     repLogs: newReplogs,
                     isSavingNewReplog: false,
+                    newRepLogValidationErrorMessage: '',
                 };
 
             })
             // re-rendering !
             this.setSuccessMessage('Rep Log saved!');
+        }).catch( error => {
+            error.response.json().then(errorsData => {
+                const errors = errorsData.errors;
+                const firstError = errors[Object.keys(errors)[0]];
+                console.log(errors);
+                console.log(firstError);
+                this.setState({newRepLogValidationErrorMessage: firstError});
+            });
         });
 
     }
