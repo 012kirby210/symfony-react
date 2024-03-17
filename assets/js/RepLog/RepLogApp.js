@@ -55,15 +55,26 @@ export class RepLogApp extends Component {
 
         this.setState({isSavingNewReplog: true});
 
+        const newState = {
+            isSavingNewReplog: false,
+        }
+
         createRepLog(newRep).then(repLog => {
 
             this.setState(prevState => {
                 const newReplogs = [...prevState.repLogs, repLog];
+
                 return {
-                    repLogs: newReplogs,
-                    isSavingNewReplog: false,
-                    newRepLogValidationErrorMessage: '',
-                };
+                    ...newState,
+                        repLogs: newReplogs,
+                        newRepLogValidationErrorMessage: '',
+                    };
+
+                // return {
+                //     repLogs: newReplogs,
+                //     isSavingNewReplog: false,
+                //     newRepLogValidationErrorMessage: '',
+                // };
 
             })
             // re-rendering !
@@ -74,10 +85,12 @@ export class RepLogApp extends Component {
                 const firstError = errors[Object.keys(errors)[0]];
                 console.log(errors);
                 console.log(firstError);
-                this.setState({newRepLogValidationErrorMessage: firstError});
+                this.setState({
+                    ...newState,
+                    newRepLogValidationErrorMessage: firstError,
+                });
             });
         });
-
     }
 
     handleRemoveReplog(id) {
@@ -89,7 +102,7 @@ export class RepLogApp extends Component {
                       return repLog;
                   }
 
-                  return Object.assign({}, repLog,  {isDeleting: true});
+                  return { ...repLog, isDeleting: true };
               })
             }
         })
