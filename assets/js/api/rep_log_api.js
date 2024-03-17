@@ -2,9 +2,9 @@ function fetchJson(url,options){
     return fetch(url,
         Object.assign({credentials: 'same-origin'}, options)
     ).then( response => {
-        if ( 204 !== response.status ) {
-            return response.json();
-        }
+        return response.text().then(
+            text => text ? JSON.parse(text) : ''
+        );
     })
 }
 export function getRepLogs() {
