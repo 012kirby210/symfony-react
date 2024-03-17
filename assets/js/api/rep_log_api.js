@@ -1,6 +1,19 @@
 function fetchJson(url,options){
+    let headers = {
+        'Content-Type': 'application/json',
+    };
+
+    if ( options  && options.headers) {
+        headers = {  ...options.headers, ...headers };
+        delete options.headers;
+    }
+
     return fetch(url,
-        Object.assign({credentials: 'same-origin'}, options)
+        Object.assign(
+            {
+                credentials: 'same-origin',
+                headers: headers
+            }, options)
     )
         .then(checkStatus)
         .then( response => {
@@ -33,8 +46,5 @@ export function createRepLog(replog){
     return fetchJson('/reps',{
         method: 'POST',
         body: JSON.stringify(replog),
-        headers: {
-            'Content-Type': 'application/json',
-        }
     });
 }
