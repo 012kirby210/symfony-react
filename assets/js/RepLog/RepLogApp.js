@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RepLog from "./Replog";
 import { getRepLogs, deleteRepLog,createRepLog } from "../api/rep_log_api";
+import PropTypes from "prop-types";
 
 
 export class RepLogApp extends Component {
@@ -70,12 +71,6 @@ export class RepLogApp extends Component {
                         newRepLogValidationErrorMessage: '',
                     };
 
-                // return {
-                //     repLogs: newReplogs,
-                //     isSavingNewReplog: false,
-                //     newRepLogValidationErrorMessage: '',
-                // };
-
             })
             // re-rendering !
             this.setSuccessMessage('Rep Log saved!');
@@ -83,8 +78,6 @@ export class RepLogApp extends Component {
             error.response.json().then(errorsData => {
                 const errors = errorsData.errors;
                 const firstError = errors[Object.keys(errors)[0]];
-                console.log(errors);
-                console.log(firstError);
                 this.setState({
                     ...newState,
                     newRepLogValidationErrorMessage: firstError,
@@ -135,6 +128,7 @@ export class RepLogApp extends Component {
 
     render() {
         return (<RepLog {...this.state}
+                        {...this.props}
                         handleRowClick={this.handleRowClick}
                         onAddRepLog={this.handleAddReplog}
                         onNumberOfCharChange={this.handleNumberOfChar}
@@ -144,3 +138,10 @@ export class RepLogApp extends Component {
     }
 }
 
+RepLogApp.propTypes = {
+    itemOptions: PropTypes.array,
+};
+
+RepLogApp.defaultProps = {
+    itemOptions: [],
+}
