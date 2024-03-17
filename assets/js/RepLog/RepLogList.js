@@ -5,7 +5,8 @@ export default function RepLogList({ highlightedRowId,
                                        onRowClick,
                                        repLogs,
                                        onDeleteReplog,
-                                       isLoaded}) {
+                                       isLoaded,
+                                       isSavingNewReplog}) {
 
 
 
@@ -43,6 +44,16 @@ export default function RepLogList({ highlightedRowId,
 
             )
         )}
+        {isSavingNewReplog && (
+            <tr>
+                <td colSpan={`4`}
+                    className={`text-center`}
+                    style={{
+                        opacity: .5
+                    }}
+                >Lifting the database...</td>
+            </tr>
+        )}
         </tbody>
     );
 }
@@ -53,4 +64,5 @@ RepLogList.propTypes = {
     repLogs: PropTypes.array.isRequired,
     onDeleteReplog: PropTypes.func.isRequired,
     isLoaded: PropTypes.bool.isRequired,
+    isSavingNewReplog: PropTypes.bool.isRequired,
 };
