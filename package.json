@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@babel/plugin-transform-object-rest-spread": "^7.24.0",
     "@symfony/webpack-encore": "^0.26.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "3",
