@@ -36,6 +36,7 @@ Encore
                 'transform-react-remove-prop-types'
             )
         }
+        babelConfig.plugins.push('@babel/plugin-transform-object-rest-spread')
     }, {
         useBuiltIns: 'usage',
         corejs: 2,
