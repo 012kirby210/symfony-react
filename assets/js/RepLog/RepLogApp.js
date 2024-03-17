@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import RepLog from "./Replog";
-import { v4 as uuid } from 'uuid';
 import { getRepLogs, deleteRepLog,createRepLog } from "../api/rep_log_api";
 
 
@@ -73,12 +72,28 @@ export class RepLogApp extends Component {
 
     handleRemoveReplog(id) {
 
-        deleteRepLog(id);
         this.setState( (prevState) => {
             return {
-                repLogs: prevState.repLogs.filter( (replog) => replog.id !== id),
+              getRepLogs: prevState.repLogs.map( repLog => {
+                  if ( id !== repLog.id ){
+                      return repLog;
+                  }
+
+                  return Object.assign({}, repLog,  {isDeleting: true});
+              })
             }
-        });
+        })
+        deleteRepLog(id).then( () => {
+            this.setSuccessMessage('Rep Log deleted !');
+
+            this.setState( (prevState) => {
+                return {
+                    repLogs: prevState.repLogs.filter( (replog) => replog.id !== id),
+                }
+            });
+        })
+
+
         // this.setState(({
         //     repLogs: this.state.repLogs.filter( (repLog) => repLog.id !== id)
         // }));
@@ -86,7 +101,7 @@ export class RepLogApp extends Component {
 
 
     setSuccessMessage(message) {
-        this.setState({successMessage: 'Rep saved !'});
+        this.setState({successMessage: message});
 
         clearTimeout(this.successMessageTimeoutHandle);
         this.successMessageTimeoutHandle = setTimeout( () => {
